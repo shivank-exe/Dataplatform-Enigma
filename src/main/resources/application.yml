@@ -1,0 +1,40 @@
+server:
+    error:
+        include-binding-errors: always
+        include-message: always
+spring:
+    profiles:
+        active: postgres
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+---
+spring:
+    profiles: MySQL
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: Afagc22awsde1
+        url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/dataplatform
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+---
+spring:
+  profiles: postgres
+  datasource:
+    username: b0273254
+    url: jdbc:postgresql://localhost:5432/dataplatform
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+
