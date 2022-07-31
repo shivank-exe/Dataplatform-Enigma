@@ -23,7 +23,7 @@ public class BusinessDomain {
     private String domainName;
     private String description;
 
-//    @OneToMany(mappedBy = "businessDomain",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-//    @JsonIgnore
-//    private List<Dataset> dataset;
+    @OneToMany(mappedBy = "businessDomain",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Dataset> dataset;
 }

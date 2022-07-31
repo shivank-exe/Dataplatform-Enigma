@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/source")
@@ -31,7 +32,7 @@ public class SourceController {
 
     @PutMapping("/{id}")
     public Source updateSourceDetails(@PathVariable("id") Long sourceId,
-                                      @RequestParam("platformId") Long platformId,
+                                      @RequestParam("platformId") Optional<Long> platformId,
                                       @RequestBody Source source){
         return  sourceService.updateSourceDetails(sourceId,platformId,source);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SourceService {
@@ -34,11 +35,11 @@ public class SourceService {
         return sourceRepository.findById(sourceId).get();
     }
 
-    public Source updateSourceDetails(Long sourceId, Long platformId, Source source) {
+    public Source updateSourceDetails(Long sourceId, Optional<Long> platformId, Source source) {
         Source present = sourceRepository.findById(sourceId).get();
 
-        if(platformId!=null){
-            Platform platform = platformRepository.findById(platformId).get();
+        if(platformId.isPresent()){
+            Platform platform = platformRepository.findById(platformId.get()).get();
             present.setPlatform(platform);
         }
         if(source.getSourceName()!=null){

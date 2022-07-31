@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DatasetService {
@@ -42,14 +43,14 @@ public class DatasetService {
         return datasetRepository.findById(datasetId).get();
     }
 
-    public Dataset updateDataset(Long datasetId, Long userId, Long domainId,Dataset dataset) {
+    public Dataset updateDataset(Long datasetId, Optional<Long> userId, Optional<Long> domainId, Dataset dataset) {
         Dataset present = datasetRepository.findById(datasetId).get();
-        if(userId!=null){
-            User user = userRepository.findById(userId).get();
+        if(userId.isPresent()){
+            User user = userRepository.findById(userId.get()).get();
             present.setUser(user);
         }
-        if(domainId!=null){
-            BusinessDomain businessDomain=businessDomainRepository.findById(domainId).get();
+        if(domainId.isPresent()){
+            BusinessDomain businessDomain=businessDomainRepository.findById(domainId.get()).get();
             present.setBusinessDomain(businessDomain);
         }
         if(dataset.getDatasetName()!=null){

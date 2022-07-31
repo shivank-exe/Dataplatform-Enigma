@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/dataset")
@@ -34,8 +35,8 @@ public class DatasetController {
 
     @PutMapping("/{id}")
     public Dataset  updateDataset(@PathVariable("id") Long datasetId,
-                                  @RequestParam Long userId,
-                                  @RequestParam  Long domainId,
+                                  @RequestParam Optional<Long> userId,
+                                  @RequestParam  Optional<Long> domainId,
                                   @RequestBody Dataset dataset){
         return datasetService.updateDataset(datasetId,userId,domainId,dataset);
     }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,7 +29,4 @@ public class TeamEntity {
     @OneToMany(mappedBy = "teamEntity",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private List<User> users;
-
-
-
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SinkService {
@@ -32,11 +33,11 @@ public class SinkService {
         return sinkRepository.findById(sinkId).get();
     }
 
-    public Sink updateSinkDetails(Long sinkId, Long platformId, Sink sink) {
+    public Sink updateSinkDetails(Long sinkId, Optional<Long> platformId, Sink sink) {
         Sink present = sinkRepository.findById(sinkId).get();
 
-        if(platformId!=null){
-            Platform platform = platformRepository.findById(platformId).get();
+        if(platformId.isPresent()){
+            Platform platform = platformRepository.findById(platformId.get()).get();
             present.setPlatform(platform);
         }
 

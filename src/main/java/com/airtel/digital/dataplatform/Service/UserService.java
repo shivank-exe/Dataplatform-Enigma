@@ -4,11 +4,11 @@ import com.airtel.digital.dataplatform.Entity.TeamEntity;
 import com.airtel.digital.dataplatform.Entity.User;
 import com.airtel.digital.dataplatform.Repository.TeamEntityRepository;
 import com.airtel.digital.dataplatform.Repository.UserRepository;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -37,10 +37,10 @@ public class UserService {
          return userRepository.findById(userId).get();
     }
 
-    public User updateUserDetails(Long userId, User user, Long teamId) {
+    public User updateUserDetails(Long userId, User user, Optional<Long> teamId) {
         User present = userRepository.findById(userId).get();
-        if(teamId!=null){
-            TeamEntity team= teamEntityRepository.findById(teamId).get();
+        if(teamId.isPresent()){
+            TeamEntity team= teamEntityRepository.findById(teamId.get()).get();
             present.setTeamEntity(team);
         }
         if(user.getUserEmail()!=null){
