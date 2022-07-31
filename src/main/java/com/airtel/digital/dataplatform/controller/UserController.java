@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -29,7 +30,7 @@ public class UserController {
         return userService.fetchUserById(userId);
     }
     @PutMapping("/{id}")
-    public User updateUserDetails(@PathVariable("id") Long userId,@RequestBody User user,@RequestParam Long teamId){
+    public User updateUserDetails(@PathVariable("id") Long userId,@RequestBody User user,@RequestParam Optional<Long> teamId){
         return userService.updateUserDetails(userId,user,teamId);
     }
     @DeleteMapping("/{id}")

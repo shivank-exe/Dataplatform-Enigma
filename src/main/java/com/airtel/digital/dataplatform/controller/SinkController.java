@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/sink")
@@ -32,7 +33,7 @@ public class SinkController {
 
     @PutMapping("/{id}")
     private Sink updateSinkDetails(@PathVariable("id") Long sinkId,
-                                   @RequestParam("platformId") Long platformId,
+                                   @RequestParam("platformId") Optional<Long> platformId,
                                    @RequestBody Sink sink){
         return sinkService.updateSinkDetails(sinkId,platformId,sink);
     }
